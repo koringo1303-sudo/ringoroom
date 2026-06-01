@@ -36,6 +36,25 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 #copy-modal-hint { font-size:13px; color:#555; margin-bottom:10px; background:#fff3f6; padding:10px; border-radius:8px; line-height:1.6; }
 #copy-modal-ta { flex:1; width:100%; font-size:14px; line-height:1.8; padding:10px; border:2px solid #f0d0da; border-radius:8px; resize:none; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif; color:#333; }
 #copy-modal-close { margin-top:12px; background:#c0436b; color:#fff; border:none; border-radius:8px; padding:14px; font-size:15px; font-weight:bold; width:100%; cursor:pointer; }
+
+/* Analytics */
+#shop-analytics { display:none; }
+#analytics-table { width:100%; border-collapse:collapse; font-size:12px; }
+#analytics-table th { background:#c0436b; color:#fff; padding:8px 6px; text-align:center; white-space:nowrap; }
+#analytics-table td { padding:8px 6px; border-bottom:1px solid #f0d0da; vertical-align:top; }
+#analytics-table tr:nth-child(even) td { background:#fff8fa; }
+.an-name { font-size:11px; line-height:1.4; min-width:120px; }
+.an-cat { font-size:11px; white-space:nowrap; color:#888; }
+.an-num { text-align:center; font-weight:bold; color:#c0436b; white-space:nowrap; }
+.an-buy { text-align:center; font-size:13px; }
+.an-memo { font-size:11px; color:#555; min-width:80px; }
+.an-th-name { min-width:120px; }
+.an-th-cat { min-width:100px; }
+.an-th-num { min-width:55px; }
+.an-th-memo { min-width:80px; }
+.an-shop-badge { display:inline-block; padding:1px 5px; border-radius:8px; font-size:10px; font-weight:bold; }
+.an-shop-Pierrot { background:#fce4ec; color:#c0436b; }
+.an-shop-シール { background:#e8f5e9; color:#388e3c; }
 </style>
 </head>
 <body>
@@ -48,7 +67,7 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
   </div>
 </div>
 <h1>🍎 楽天ROOM 投稿文まとめ</h1>
-<div class="shop-nav"><a class="shop-btn active" href="#shop-pierrot">🏪 Pierrot</a><a class="shop-btn" href="#shop-seal">🏷️ シール</a></div>
+<div class="shop-nav"><a class="shop-btn active" href="#shop-pierrot">🏪 Pierrot</a><a class="shop-btn" href="#shop-seal">🏷️ シール</a><button class="shop-btn" onclick="showAnalytics()" id="btn-analytics">📊 分析</button></div>
 <div id="shop-pierrot">
 <div class="shop-header">🏪 Pierrot</div>
 <div class="nav"><a class="nav-btn" href="#pants">👖<br>パンツ</a><a class="nav-btn" href="#skirt">👗<br>スカート</a><a class="nav-btn" href="#onepiece">👘<br>ワンピース</a><a class="nav-btn" href="#tops">👚<br>トップス</a><a class="nav-btn" href="#other">🛍️<br>その他</a></div>
@@ -1737,5 +1756,459 @@ function closeCopyModal() {
 </div>
 </div></div>
 </div>
+
+<div id="shop-analytics" style="display:none;">
+<div class="shop-header">📊 分析・記録</div>
+<div style="padding:12px 14px;">
+  <div style="background:#fff3f6;border-radius:10px;padding:12px;margin-bottom:14px;font-size:12px;color:#666;line-height:1.7;">
+    💡 楽天ROOMのアプリで「アクセス解析」を確認したら、Claudeに数字を伝えてください。<br>
+    例：「ta1のいいね20、クリック45、購入あり」
+  </div>
+  <div style="overflow-x:auto;">
+  <table id="analytics-table">
+    <thead>
+      <tr>
+        <th class="an-th-name">商品名</th>
+        <th class="an-th-cat">カテゴリ</th>
+        <th class="an-th-num">❤️ いいね</th>
+        <th class="an-th-num">👆 クリック</th>
+        <th class="an-th-num">🛒 購入</th>
+        <th class="an-th-memo">メモ</th>
+      </tr>
+    </thead>
+    <tbody>
+<tr data-ta="ta1">
+  <td class="an-name">① 高見えすっきりテーパードパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta1">—</td>
+  <td class="an-num" id="an-click-ta1">—</td>
+  <td class="an-buy" id="an-buy-ta1">—</td>
+  <td class="an-memo" id="an-memo-ta1"></td>
+</tr>
+<tr data-ta="ta2">
+  <td class="an-name">② 高見えワイドパンツ【低身長サイズ有】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta2">—</td>
+  <td class="an-num" id="an-click-ta2">—</td>
+  <td class="an-buy" id="an-buy-ta2">—</td>
+  <td class="an-memo" id="an-memo-ta2"></td>
+</tr>
+<tr data-ta="ta3">
+  <td class="an-name">③ セルフカットプリーツ イージーワイドパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta3">—</td>
+  <td class="an-num" id="an-click-ta3">—</td>
+  <td class="an-buy" id="an-buy-ta3">—</td>
+  <td class="an-memo" id="an-memo-ta3"></td>
+</tr>
+<tr data-ta="ta4">
+  <td class="an-name">④ 接触冷感 イージーパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta4">—</td>
+  <td class="an-num" id="an-click-ta4">—</td>
+  <td class="an-buy" id="an-buy-ta4">—</td>
+  <td class="an-memo" id="an-memo-ta4"></td>
+</tr>
+<tr data-ta="ta5">
+  <td class="an-name">⑤ 高見えゆるテーパードパンツ【低身長サイズ有】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta5">—</td>
+  <td class="an-num" id="an-click-ta5">—</td>
+  <td class="an-buy" id="an-buy-ta5">—</td>
+  <td class="an-memo" id="an-memo-ta5"></td>
+</tr>
+<tr data-ta="ta6">
+  <td class="an-name">⑥ タックカーブパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta6">—</td>
+  <td class="an-num" id="an-click-ta6">—</td>
+  <td class="an-buy" id="an-buy-ta6">—</td>
+  <td class="an-memo" id="an-memo-ta6"></td>
+</tr>
+<tr data-ta="ta7">
+  <td class="an-name">⑦ ストレッチスリムテーパードデニム</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta7">—</td>
+  <td class="an-num" id="an-click-ta7">—</td>
+  <td class="an-buy" id="an-buy-ta7">—</td>
+  <td class="an-memo" id="an-memo-ta7"></td>
+</tr>
+<tr data-ta="ta8">
+  <td class="an-name">⑧ 接触冷感 高見えワイドパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta8">—</td>
+  <td class="an-num" id="an-click-ta8">—</td>
+  <td class="an-buy" id="an-buy-ta8">—</td>
+  <td class="an-memo" id="an-memo-ta8"></td>
+</tr>
+<tr data-ta="ta9">
+  <td class="an-name">⑨ ストレッチツイルワイドパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta9">—</td>
+  <td class="an-num" id="an-click-ta9">—</td>
+  <td class="an-buy" id="an-buy-ta9">—</td>
+  <td class="an-memo" id="an-memo-ta9"></td>
+</tr>
+<tr data-ta="ta10">
+  <td class="an-name">⑩ 接触冷感 リネンライクボックススパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta10">—</td>
+  <td class="an-num" id="an-click-ta10">—</td>
+  <td class="an-buy" id="an-buy-ta10">—</td>
+  <td class="an-memo" id="an-memo-ta10"></td>
+</tr>
+<tr data-ta="ta14">
+  <td class="an-name">⑭ 大人の高見えストレートパンツ【美脚・PSサイズ対応】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta14">—</td>
+  <td class="an-num" id="an-click-ta14">—</td>
+  <td class="an-buy" id="an-buy-ta14">—</td>
+  <td class="an-memo" id="an-memo-ta14"></td>
+</tr>
+<tr data-ta="ta19">
+  <td class="an-name">⑲ 接触冷感リネンライクワイドパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta19">—</td>
+  <td class="an-num" id="an-click-ta19">—</td>
+  <td class="an-buy" id="an-buy-ta19">—</td>
+  <td class="an-memo" id="an-memo-ta19"></td>
+</tr>
+<tr data-ta="ta21">
+  <td class="an-name">㉑ 選べる2type ハイウエストストレートデニム</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta21">—</td>
+  <td class="an-num" id="an-click-ta21">—</td>
+  <td class="an-buy" id="an-buy-ta21">—</td>
+  <td class="an-memo" id="an-memo-ta21"></td>
+</tr>
+<tr data-ta="ta23">
+  <td class="an-name">㉓ 2wayカーゴパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta23">—</td>
+  <td class="an-num" id="an-click-ta23">—</td>
+  <td class="an-buy" id="an-buy-ta23">—</td>
+  <td class="an-memo" id="an-memo-ta23"></td>
+</tr>
+<tr data-ta="ta25">
+  <td class="an-name">㉕ センタープレスタックワイドパンツ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta25">—</td>
+  <td class="an-num" id="an-click-ta25">—</td>
+  <td class="an-buy" id="an-buy-ta25">—</td>
+  <td class="an-memo" id="an-memo-ta25"></td>
+</tr>
+<tr data-ta="ta35">
+  <td class="an-name">① 接触冷感 高見えゆるテーパードパンツ（セール）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta35">—</td>
+  <td class="an-num" id="an-click-ta35">—</td>
+  <td class="an-buy" id="an-buy-ta35">—</td>
+  <td class="an-memo" id="an-memo-ta35"></td>
+</tr>
+<tr data-ta="ta36">
+  <td class="an-name">① 接触冷感リネンライクタックワイドパンツ（セール）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta36">—</td>
+  <td class="an-num" id="an-click-ta36">—</td>
+  <td class="an-buy" id="an-buy-ta36">—</td>
+  <td class="an-memo" id="an-memo-ta36"></td>
+</tr>
+<tr data-ta="ta39">
+  <td class="an-name">① 選べるスーパーストレッチスキニーパンツ（セール）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta39">—</td>
+  <td class="an-num" id="an-click-ta39">—</td>
+  <td class="an-buy" id="an-buy-ta39">—</td>
+  <td class="an-memo" id="an-memo-ta39"></td>
+</tr>
+<tr data-ta="ta44">
+  <td class="an-name">① UV・ウォッシャブル2wayツイルカーゴパンツ（セール）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta44">—</td>
+  <td class="an-num" id="an-click-ta44">—</td>
+  <td class="an-buy" id="an-buy-ta44">—</td>
+  <td class="an-memo" id="an-memo-ta44"></td>
+</tr>
+<tr data-ta="ta51">
+  <td class="an-name">① 撥水×軽量タックパンツ（セール）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👖 パンツ</td>
+  <td class="an-num" id="an-like-ta51">—</td>
+  <td class="an-num" id="an-click-ta51">—</td>
+  <td class="an-buy" id="an-buy-ta51">—</td>
+  <td class="an-memo" id="an-memo-ta51"></td>
+</tr>
+<tr data-ta="ta15">
+  <td class="an-name">⑮ サマーツイードピンタックロングスカート</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👗 スカート</td>
+  <td class="an-num" id="an-like-ta15">—</td>
+  <td class="an-num" id="an-click-ta15">—</td>
+  <td class="an-buy" id="an-buy-ta15">—</td>
+  <td class="an-memo" id="an-memo-ta15"></td>
+</tr>
+<tr data-ta="ta11">
+  <td class="an-name">⑪ 選べるキャミワンピースセット【低身長サイズ有】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👘 ワンピース</td>
+  <td class="an-num" id="an-like-ta11">—</td>
+  <td class="an-num" id="an-click-ta11">—</td>
+  <td class="an-buy" id="an-buy-ta11">—</td>
+  <td class="an-memo" id="an-memo-ta11"></td>
+</tr>
+<tr data-ta="ta12">
+  <td class="an-name">⑫ 兵児帯セット浴衣ワンピース【2way】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👘 ワンピース</td>
+  <td class="an-num" id="an-like-ta12">—</td>
+  <td class="an-num" id="an-click-ta12">—</td>
+  <td class="an-buy" id="an-buy-ta12">—</td>
+  <td class="an-memo" id="an-memo-ta12"></td>
+</tr>
+<tr data-ta="ta13">
+  <td class="an-name">⑬ 兵児帯セット浴衣【大人浴衣・10色展開】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👘 ワンピース</td>
+  <td class="an-num" id="an-like-ta13">—</td>
+  <td class="an-num" id="an-click-ta13">—</td>
+  <td class="an-buy" id="an-buy-ta13">—</td>
+  <td class="an-memo" id="an-memo-ta13"></td>
+</tr>
+<tr data-ta="ta16">
+  <td class="an-name">⑯ 2wayギャザー切り替えキャミワンピース</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👘 ワンピース</td>
+  <td class="an-num" id="an-like-ta16">—</td>
+  <td class="an-num" id="an-click-ta16">—</td>
+  <td class="an-buy" id="an-buy-ta16">—</td>
+  <td class="an-memo" id="an-memo-ta16"></td>
+</tr>
+<tr data-ta="ta18">
+  <td class="an-name">⑱ サイドフラップポケットIラインスカート</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👘 ワンピース</td>
+  <td class="an-num" id="an-like-ta18">—</td>
+  <td class="an-num" id="an-click-ta18">—</td>
+  <td class="an-buy" id="an-buy-ta18">—</td>
+  <td class="an-memo" id="an-memo-ta18"></td>
+</tr>
+<tr data-ta="ta20">
+  <td class="an-name">⑳ 選べるマーメイドシルエットスカート</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👘 ワンピース</td>
+  <td class="an-num" id="an-like-ta20">—</td>
+  <td class="an-num" id="an-click-ta20">—</td>
+  <td class="an-buy" id="an-buy-ta20">—</td>
+  <td class="an-memo" id="an-memo-ta20"></td>
+</tr>
+<tr data-ta="ta24">
+  <td class="an-name">㉔ 選べる多機能リブタンクトップ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta24">—</td>
+  <td class="an-num" id="an-click-ta24">—</td>
+  <td class="an-buy" id="an-buy-ta24">—</td>
+  <td class="an-memo" id="an-memo-ta24"></td>
+</tr>
+<tr data-ta="ta26">
+  <td class="an-name">㉖ 接触冷感シアーオーバージャケット</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta26">—</td>
+  <td class="an-num" id="an-click-ta26">—</td>
+  <td class="an-buy" id="an-buy-ta26">—</td>
+  <td class="an-memo" id="an-memo-ta26"></td>
+</tr>
+<tr data-ta="ta27">
+  <td class="an-name">⑳ UVカットバックフリルパーカー</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta27">—</td>
+  <td class="an-num" id="an-click-ta27">—</td>
+  <td class="an-buy" id="an-buy-ta27">—</td>
+  <td class="an-memo" id="an-memo-ta27"></td>
+</tr>
+<tr data-ta="ta28">
+  <td class="an-name">㉑ 多機能フレアパーカー</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta28">—</td>
+  <td class="an-num" id="an-click-ta28">—</td>
+  <td class="an-buy" id="an-buy-ta28">—</td>
+  <td class="an-memo" id="an-memo-ta28"></td>
+</tr>
+<tr data-ta="ta33">
+  <td class="an-name">① 選べるデザインシアーシャツ（シャツカラー／ノーカラー）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta33">—</td>
+  <td class="an-num" id="an-click-ta33">—</td>
+  <td class="an-buy" id="an-buy-ta33">—</td>
+  <td class="an-memo" id="an-memo-ta33"></td>
+</tr>
+<tr data-ta="ta34">
+  <td class="an-name">① まるで着る日傘！接触冷感UVパーカー</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta34">—</td>
+  <td class="an-num" id="an-click-ta34">—</td>
+  <td class="an-buy" id="an-buy-ta34">—</td>
+  <td class="an-memo" id="an-memo-ta34"></td>
+</tr>
+<tr data-ta="ta37">
+  <td class="an-name">① 撥水・UVカット ノーカラーギャザーブルゾン</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta37">—</td>
+  <td class="an-num" id="an-click-ta37">—</td>
+  <td class="an-buy" id="an-buy-ta37">—</td>
+  <td class="an-memo" id="an-memo-ta37"></td>
+</tr>
+<tr data-ta="ta38">
+  <td class="an-name">① 【機能インナー付き】ペプラムギャザーシフォンブラウス</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta38">—</td>
+  <td class="an-num" id="an-click-ta38">—</td>
+  <td class="an-buy" id="an-buy-ta38">—</td>
+  <td class="an-memo" id="an-memo-ta38"></td>
+</tr>
+<tr data-ta="ta40">
+  <td class="an-name">① 【汗ジミ防止・接触冷感】ピンタックフレアブラウス</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta40">—</td>
+  <td class="an-num" id="an-click-ta40">—</td>
+  <td class="an-buy" id="an-buy-ta40">—</td>
+  <td class="an-memo" id="an-memo-ta40"></td>
+</tr>
+<tr data-ta="ta41">
+  <td class="an-name">① 【汗ジミ防止・接触冷感】フレアスリーブブラウス</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta41">—</td>
+  <td class="an-num" id="an-click-ta41">—</td>
+  <td class="an-buy" id="an-buy-ta41">—</td>
+  <td class="an-memo" id="an-memo-ta41"></td>
+</tr>
+<tr data-ta="ta42">
+  <td class="an-name">① フレアスリーブブザムTブラウス</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta42">—</td>
+  <td class="an-num" id="an-click-ta42">—</td>
+  <td class="an-buy" id="an-buy-ta42">—</td>
+  <td class="an-memo" id="an-memo-ta42"></td>
+</tr>
+<tr data-ta="ta43">
+  <td class="an-name">① 2wayネックパールデザインTブラウス</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta43">—</td>
+  <td class="an-num" id="an-click-ta43">—</td>
+  <td class="an-buy" id="an-buy-ta43">—</td>
+  <td class="an-memo" id="an-memo-ta43"></td>
+</tr>
+<tr data-ta="ta45">
+  <td class="an-name">① 選べるネック5分袖テレコリブカットソー</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta45">—</td>
+  <td class="an-num" id="an-click-ta45">—</td>
+  <td class="an-buy" id="an-buy-ta45">—</td>
+  <td class="an-memo" id="an-memo-ta45"></td>
+</tr>
+<tr data-ta="ta46">
+  <td class="an-name">① 【ラッシュガード】ヘムフレアフーディ</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta46">—</td>
+  <td class="an-num" id="an-click-ta46">—</td>
+  <td class="an-buy" id="an-buy-ta46">—</td>
+  <td class="an-memo" id="an-memo-ta46"></td>
+</tr>
+<tr data-ta="ta48">
+  <td class="an-name">① 【ラッシュガード】2wayティアードチュニック</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta48">—</td>
+  <td class="an-num" id="an-click-ta48">—</td>
+  <td class="an-buy" id="an-buy-ta48">—</td>
+  <td class="an-memo" id="an-memo-ta48"></td>
+</tr>
+<tr data-ta="ta50">
+  <td class="an-name">① 【ラッシュガード】カップインキャミソール</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 👚 トップス</td>
+  <td class="an-num" id="an-like-ta50">—</td>
+  <td class="an-num" id="an-click-ta50">—</td>
+  <td class="an-buy" id="an-buy-ta50">—</td>
+  <td class="an-memo" id="an-memo-ta50"></td>
+</tr>
+<tr data-ta="ta49">
+  <td class="an-name">① 【汗取り・カップ付き】選べる機能性インナー</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 🛍️ その他</td>
+  <td class="an-num" id="an-like-ta49">—</td>
+  <td class="an-num" id="an-click-ta49">—</td>
+  <td class="an-buy" id="an-buy-ta49">—</td>
+  <td class="an-memo" id="an-memo-ta49"></td>
+</tr>
+<tr data-ta="ta47">
+  <td class="an-name">① 接触冷感選べるペチコート</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 🛍️ その他</td>
+  <td class="an-num" id="an-like-ta47">—</td>
+  <td class="an-num" id="an-click-ta47">—</td>
+  <td class="an-buy" id="an-buy-ta47">—</td>
+  <td class="an-memo" id="an-memo-ta47"></td>
+</tr>
+<tr data-ta="ta17">
+  <td class="an-name">⑰ ペアスキンフレンチオールインワン</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 🛍️ その他</td>
+  <td class="an-num" id="an-like-ta17">—</td>
+  <td class="an-num" id="an-click-ta17">—</td>
+  <td class="an-buy" id="an-buy-ta17">—</td>
+  <td class="an-memo" id="an-memo-ta17"></td>
+</tr>
+<tr data-ta="ta22">
+  <td class="an-name">㉒ パールボタンジャケットセットアップ【ママスーツ】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-Pierrot">Pierrot</span> 🛍️ その他</td>
+  <td class="an-num" id="an-like-ta22">—</td>
+  <td class="an-num" id="an-click-ta22">—</td>
+  <td class="an-buy" id="an-buy-ta22">—</td>
+  <td class="an-memo" id="an-memo-ta22"></td>
+</tr>
+<tr data-ta="ta29">
+  <td class="an-name">① ボンボンドロップシール（Disney・サンリオ・ちいかわ他）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-シール">シール</span> 🏪 販売一丁目</td>
+  <td class="an-num" id="an-like-ta29">—</td>
+  <td class="an-num" id="an-click-ta29">—</td>
+  <td class="an-buy" id="an-buy-ta29">—</td>
+  <td class="an-memo" id="an-memo-ta29"></td>
+</tr>
+<tr data-ta="ta31">
+  <td class="an-name">② ボンボンドロップシール（サンリオ・ちいかわ・スヌーピー他）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-シール">シール</span> 🏪 販売一丁目</td>
+  <td class="an-num" id="an-like-ta31">—</td>
+  <td class="an-num" id="an-click-ta31">—</td>
+  <td class="an-buy" id="an-buy-ta31">—</td>
+  <td class="an-memo" id="an-memo-ta31"></td>
+</tr>
+<tr data-ta="ta30">
+  <td class="an-name">① ボンボンドロップシール ディズニー【正規品】</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-シール">シール</span> 🏪 T-CROWN</td>
+  <td class="an-num" id="an-like-ta30">—</td>
+  <td class="an-num" id="an-click-ta30">—</td>
+  <td class="an-buy" id="an-buy-ta30">—</td>
+  <td class="an-memo" id="an-memo-ta30"></td>
+</tr>
+<tr data-ta="ta32">
+  <td class="an-name">② ボンボンドロップシール ミニ（サンリオ・たまごっち・ちいかわ他）</td>
+  <td class="an-cat"><span class="an-shop-badge an-shop-シール">シール</span> 🏪 T-CROWN</td>
+  <td class="an-num" id="an-like-ta32">—</td>
+  <td class="an-num" id="an-click-ta32">—</td>
+  <td class="an-buy" id="an-buy-ta32">—</td>
+  <td class="an-memo" id="an-memo-ta32"></td>
+</tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="margin-top:12px;font-size:11px;color:#bbb;text-align:center;">最終更新：未記録</div>
+</div>
+</div>
+
+<script>
+function showAnalytics() {
+  document.getElementById('shop-pierrot').style.display = 'none';
+  document.getElementById('shop-seal').style.display = 'none';
+  document.getElementById('shop-analytics').style.display = 'block';
+  document.querySelectorAll('.shop-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-analytics').classList.add('active');
+  window.scrollTo(0,0);
+}
+// Override anchor clicks to hide analytics
+document.querySelectorAll('.shop-btn[href]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.getElementById('shop-analytics').style.display = 'none';
+    document.getElementById('shop-pierrot').style.display = '';
+    document.getElementById('shop-seal').style.display = '';
+  });
+});
+</script>
 </body>
 </html>
