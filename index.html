@@ -38,6 +38,14 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 #copy-modal-close { margin-top:12px; background:#c0436b; color:#fff; border:none; border-radius:8px; padding:14px; font-size:15px; font-weight:bold; width:100%; cursor:pointer; }
 
 /* Analytics */
+.an-month-header { font-size:15px; font-weight:bold; color:#c0436b; border-left:4px solid #c0436b; padding-left:10px; margin-bottom:12px; }
+.an-kpi-grid { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
+.an-kpi { background:#fff; border-radius:10px; padding:10px 6px; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
+.an-kpi-num { font-size:20px; font-weight:bold; color:#333; line-height:1.2; }
+.an-kpi-label { font-size:10px; color:#888; margin-top:4px; }
+.an-advice { background:#fff3f6; border-radius:8px; padding:10px 12px; font-size:12px; color:#555; line-height:1.7; margin-bottom:14px; }
+.an-month-sep { border:none; border-top:2px dashed #f0d0da; margin:20px 0; }
+
 #shop-analytics { display:none; }
 #analytics-table { width:100%; border-collapse:collapse; font-size:12px; }
 #analytics-table th { background:#c0436b; color:#fff; padding:8px 6px; text-align:center; white-space:nowrap; }
@@ -1761,9 +1769,45 @@ function closeCopyModal() {
 <div class="shop-header">📊 分析・記録</div>
 <div style="padding:12px 14px;">
   <div style="background:#fff3f6;border-radius:10px;padding:12px;margin-bottom:14px;font-size:12px;color:#666;line-height:1.7;">
-    💡 楽天ROOMのアプリで「アクセス解析」を確認したら、Claudeに数字を伝えてください。<br>
-    例：「ta1のいいね20、クリック45、購入あり」
+    💡 毎月末に3つのCSVをClaudeに送ると、自動で更新します。
   </div>
+
+<div style="margin-bottom:20px;">
+  <div class="an-month-header">📅 2025年3月（スタート月）</div>
+  <div class="an-kpi-grid">
+    <div class="an-kpi"><div class="an-kpi-num">112</div><div class="an-kpi-label">👆 クリック数</div></div>
+    <div class="an-kpi"><div class="an-kpi-num">8<span style="font-size:13px;">件</span></div><div class="an-kpi-label">🛒 確定売上</div></div>
+    <div class="an-kpi"><div class="an-kpi-num" style="color:#c0436b;">1,233<span style="font-size:13px;">円</span></div><div class="an-kpi-label">💰 確定報酬</div></div>
+    <div class="an-kpi"><div class="an-kpi-num">22,001<span style="font-size:11px;">円</span></div><div class="an-kpi-label">💴 総売上金額</div></div>
+  </div>
+  <div class="an-advice">💡 料率15%のキッチン用品が最高効率。日用品・生活雑貨の投稿も効果的。クリック→成約率 約7%（基準値として記録）。</div>
+  <div style="font-size:13px;font-weight:bold;color:#c0436b;margin:12px 0 8px;">売れた商品一覧</div>
+  <div style="overflow-x:auto;">
+  <table id="analytics-table" style="width:100%;border-collapse:collapse;font-size:11px;">
+    <thead><tr>
+      <th class="an-th-num">日付</th>
+      <th class="an-th-name">商品名</th>
+      <th class="an-th-cat">ショップ</th>
+      <th class="an-th-num">売上</th>
+      <th class="an-th-num">報酬</th>
+      <th class="an-th-num">料率</th>
+      <th class="an-th-num">状態</th>
+    </tr></thead>
+    <tbody>
+<tr><td class="an-num">2025-03-15</td><td class="an-name">キッチンペーパーホルダー マグネット キッチン 片手で切…</td><td style="font-size:11px;color:#888;">ratiss ラティス</td><td class="an-num">1,890円</td><td class="an-num" style="color:#c0436b;">283円</td><td style="font-size:10px;color:#888;">15.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr style="opacity:0.4;text-decoration:line-through;"><td class="an-num">2025-03-18</td><td class="an-name">マミーポコパンツ ドラえもん ビッグサイズ 12kg〜2…</td><td style="font-size:11px;color:#888;">楽天24 ベビー館</td><td class="an-num">3,798円</td><td class="an-num" style="color:#c0436b;">151円</td><td style="font-size:10px;color:#888;">4.0%</td><td><span style="color:#f44336;font-weight:bold;">破棄</span></td></tr>
+<tr><td class="an-num">2025-03-22</td><td class="an-name">【赤字覚悟】P5倍+先着100名限定☆クーポン利用で29…</td><td style="font-size:11px;color:#888;">GURAMU TOKYO</td><td class="an-num">2,980円</td><td class="an-num" style="color:#c0436b;">298円</td><td style="font-size:10px;color:#888;">10.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr><td class="an-num">2025-03-23</td><td class="an-name">【最短当日お届け(チケット要)】 さらさ 柔軟剤 本体 …</td><td style="font-size:11px;color:#888;">楽天即配マート</td><td class="an-num">534円</td><td class="an-num" style="color:#c0436b;">16円</td><td style="font-size:10px;color:#888;">3.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr><td class="an-num">2025-03-23</td><td class="an-name">【最短当日お届け(チケット要)】 さらさ 洗濯洗剤 液体…</td><td style="font-size:11px;color:#888;">楽天即配マート</td><td class="an-num">1,175円</td><td class="an-num" style="color:#c0436b;">35円</td><td style="font-size:10px;color:#888;">3.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr><td class="an-num">2025-03-23</td><td class="an-name">【最短当日お届け(チケット要)】 さらさ 柔軟剤 詰め替…</td><td style="font-size:11px;color:#888;">楽天即配マート</td><td class="an-num">719円</td><td class="an-num" style="color:#c0436b;">21円</td><td style="font-size:10px;color:#888;">3.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr><td class="an-num">2025-03-23</td><td class="an-name">【最短当日お届け(チケット要)】 さらさ 洗濯洗剤 液体…</td><td style="font-size:11px;color:#888;">楽天即配マート</td><td class="an-num">517円</td><td class="an-num" style="color:#c0436b;">15円</td><td style="font-size:10px;color:#888;">3.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr><td class="an-num">2025-03-25</td><td class="an-name">【当店最安値価格】4種ミックスナッツ 3種ミックスナッツ…</td><td style="font-size:11px;color:#888;">美味しさは元気の源 【自…</td><td class="an-num">1,599円</td><td class="an-num" style="color:#c0436b;">63円</td><td style="font-size:10px;color:#888;">4.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+<tr><td class="an-num">2025-03-31</td><td class="an-name">【HAWKINS】 ホーキンス AL IT5 SWIRL…</td><td style="font-size:11px;color:#888;">ABC-MART楽天市場…</td><td class="an-num">8,789円</td><td class="an-num" style="color:#c0436b;">351円</td><td style="font-size:10px;color:#888;">4.0%</td><td><span style="color:#4caf50;font-weight:bold;">確定</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
   <div style="overflow-x:auto;">
   <table id="analytics-table">
     <thead>
@@ -2188,7 +2232,7 @@ function closeCopyModal() {
     </tbody>
   </table>
   </div>
-  <div style="margin-top:12px;font-size:11px;color:#bbb;text-align:center;">最終更新：未記録</div>
+  <div style="margin-top:12px;font-size:11px;color:#bbb;text-align:center;">最終更新：2025年3月分（2026年6月1日）</div>
 </div>
 </div>
 
