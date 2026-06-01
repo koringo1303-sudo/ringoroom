@@ -75,7 +75,7 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
   </div>
 </div>
 <h1>🍎 楽天ROOM 投稿文まとめ</h1>
-<div class="shop-nav"><a class="shop-btn active" href="#shop-pierrot">🏪 Pierrot</a><a class="shop-btn" href="#shop-seal">🏷️ シール</a><button class="shop-btn" onclick="showAnalytics()" id="btn-analytics">📊 分析</button></div>
+<div class="shop-nav"><a class="shop-btn active" href="#shop-pierrot">🏪 Pierrot</a><a class="shop-btn" href="#shop-seal">🏷️ シール</a><button class="shop-btn" onclick="showAnalytics(this)" id="btn-analytics" style="background:#fff3e0;border-color:#ff9800;color:#e65100;">📊 分析</button></div>
 <div id="shop-pierrot">
 <div class="shop-header">🏪 Pierrot</div>
 <div class="nav"><a class="nav-btn" href="#pants">👖<br>パンツ</a><a class="nav-btn" href="#skirt">👗<br>スカート</a><a class="nav-btn" href="#onepiece">👘<br>ワンピース</a><a class="nav-btn" href="#tops">👚<br>トップス</a><a class="nav-btn" href="#other">🛍️<br>その他</a></div>
@@ -2237,11 +2237,11 @@ function closeCopyModal() {
 </div>
 
 <script>
-function showAnalytics() {
+function showAnalytics(btn) {
   document.getElementById('shop-pierrot').style.display = 'none';
   document.getElementById('shop-seal').style.display = 'none';
   document.getElementById('shop-analytics').style.display = 'block';
-  document.querySelectorAll('.shop-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.shop-btn').forEach(function(b){ b.classList.remove('active'); });
   document.getElementById('btn-analytics').classList.add('active');
   window.scrollTo(0,0);
 }
