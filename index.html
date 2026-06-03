@@ -71,6 +71,7 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 <body>
 <script>
 function showMainTab(tabId, btn) {
+  window.scrollTo(0, 0);
   var ids = ['fashion-section','shop-seal','shop-kids','shop-kaden'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
@@ -81,8 +82,18 @@ function showMainTab(tabId, btn) {
   var btns = document.querySelectorAll('.shop-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
+  if (tabId === 'fashion-section') {
+    var pierrot = document.getElementById('shop-pierrot');
+    var petitjo = document.getElementById('shop-petitjo');
+    if (pierrot) pierrot.style.display = 'block';
+    if (petitjo) petitjo.style.display = 'none';
+    var fbtns = document.querySelectorAll('.fashion-shop-btn');
+    for (var k = 0; k < fbtns.length; k++) fbtns[k].classList.remove('active');
+    if (fbtns[0]) fbtns[0].classList.add('active');
+  }
 }
 function showFashionShop(shopId, btn) {
+  window.scrollTo(0, 0);
   var ids = ['shop-pierrot','shop-petitjo'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
