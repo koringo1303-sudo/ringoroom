@@ -69,6 +69,32 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 </style>
 </head>
 <body>
+<script>
+function showMainTab(tabId, btn) {
+  var ids = ['fashion-section','shop-seal','shop-kids','shop-kaden'];
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
+    if (el) el.style.display = 'none';
+  }
+  var t = document.getElementById(tabId);
+  if (t) t.style.display = 'block';
+  var btns = document.querySelectorAll('.shop-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+  if (btn) btn.classList.add('active');
+}
+function showFashionShop(shopId, btn) {
+  var ids = ['shop-pierrot','shop-petitjo'];
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
+    if (el) el.style.display = 'none';
+  }
+  var t = document.getElementById(shopId);
+  if (t) t.style.display = 'block';
+  var btns = document.querySelectorAll('.fashion-shop-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+  if (btn) btn.classList.add('active');
+}
+</script>
 <div id="copy-modal">
   <div id="copy-modal-inner">
     <div id="copy-modal-title">📋 投稿文をコピー</div>
@@ -2335,36 +2361,6 @@ USB充電式だからベビーカー用バッテリーで使えて便利✨
 </div>
 
 
-<script>
-var MAIN_TABS = ['fashion-section','shop-seal','shop-kids','shop-kaden'];
-var FASHION_SHOPS = ['shop-pierrot','shop-petitjo'];
 
-function showMainTab(tabId, btn) {
-  MAIN_TABS.forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) el.style.display = 'none';
-  });
-  var t = document.getElementById(tabId);
-  if(t) t.style.display = 'block';
-  document.querySelectorAll('.shop-btn').forEach(function(b){ b.classList.remove('active'); });
-  if(btn) btn.classList.add('active');
-  window.scrollTo(0,0);
-  return false;
-}
-
-function showFashionShop(shopId, btn) {
-  FASHION_SHOPS.forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) el.style.display = 'none';
-  });
-  var t = document.getElementById(shopId);
-  if(t) t.style.display = 'block';
-  document.querySelectorAll('.fashion-shop-btn').forEach(function(b){ b.classList.remove('active'); });
-  if(btn) btn.classList.add('active');
-  window.scrollTo(0,0);
-  return false;
-}
-
-</script>
 </body>
 </html>
