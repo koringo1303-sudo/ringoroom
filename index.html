@@ -63,17 +63,23 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 .an-shop-Pierrot { background:#fce4ec; color:#c0436b; }
 .an-shop-シール { background:#e8f5e9; color:#388e3c; }
 
+.tab-hidden { display: none !important; }
 </style>
 </head>
 <body>
 <script>
 function showMainTab(tabId, btn) {
-  var d = 'none';
-  document.getElementById('shop-pierrot').style.display = (tabId==='shop-pierrot') ? 'block' : d;
-  document.getElementById('shop-petitjo').style.display = (tabId==='shop-petitjo') ? 'block' : d;
-  document.getElementById('shop-seal').style.display    = (tabId==='shop-seal')    ? 'block' : d;
-  document.getElementById('shop-kids').style.display    = (tabId==='shop-kids')    ? 'block' : d;
-  document.getElementById('shop-kaden').style.display   = (tabId==='shop-kaden')   ? 'block' : d;
+  var tabs = ['shop-pierrot','shop-petitjo','shop-seal','shop-kids','shop-kaden'];
+  for (var i = 0; i < tabs.length; i++) {
+    var el = document.getElementById(tabs[i]);
+    if (el) {
+      if (tabs[i] === tabId) {
+        el.classList.remove('tab-hidden');
+      } else {
+        el.classList.add('tab-hidden');
+      }
+    }
+  }
   var btns = document.querySelectorAll('.shop-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
@@ -1736,7 +1742,7 @@ function closeCopyModal() {
 </script>
 </div>
 
-<div id="shop-petitjo" style="display:none">
+<div id="shop-petitjo" class="tab-hidden">
 <div class="shop-header">👗 Petitjo</div>
 <div class="cat-section" id="petitjo-pants">
 <div class="cat-header">👖 パンツ</div>
@@ -1935,7 +1941,7 @@ P58〜P67の4丈展開でジャストな丈感が手に入る✨
 </div>
 </div>
 
-<div id="shop-seal" style="display:none">
+<div id="shop-seal" class="tab-hidden">
 <div class="shop-header">🏷️ シール</div>
 <div class="nav"><a class="nav-btn" href="#seal-alljapan">🏪<br>販売一丁目</a><a class="nav-btn" href="#seal-tcrown">🏪<br>T-CROWN</a></div>
 <div class="cat-section" id="seal-alljapan"><div class="cat-header">🏪 販売一丁目</div><div class="card">
@@ -2128,7 +2134,7 @@ P58〜P67の4丈展開でジャストな丈感が手に入る✨
 
 
 
-<div id="shop-kids" style="display:none">
+<div id="shop-kids" class="tab-hidden">
 <div class="shop-header">👶 キッズ・ベビー</div>
 <div class="card">
 <div class="card-top">
@@ -2300,7 +2306,7 @@ USB充電式だからベビーカー用バッテリーで使えて便利✨
 </div>
 
 
-<div id="shop-kaden" style="display:none">
+<div id="shop-kaden" class="tab-hidden">
 <div class="shop-header">🏠 家電・ガジェット</div>
 <div class="card">
 <div class="card-top">
