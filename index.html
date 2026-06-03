@@ -63,16 +63,13 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 .an-shop-Pierrot { background:#fce4ec; color:#c0436b; }
 .an-shop-シール { background:#e8f5e9; color:#388e3c; }
 
-.fashion-shop-nav { display:flex; gap:8px; padding:8px 14px; overflow-x:auto; background:#fdf6f8; border-bottom:1px solid #f0d0da; position:sticky; top:94px; z-index:9; -webkit-overflow-scrolling:touch; }
-.fashion-shop-btn { min-width:80px; text-align:center; background:#fff; border:2px solid #c0436b; border-radius:20px; padding:6px 12px; font-size:12px; color:#c0436b; text-decoration:none; font-weight:bold; white-space:nowrap; cursor:pointer; }
-.fashion-shop-btn.active { background:#c0436b; color:#fff; }
 </style>
 </head>
 <body>
 <script>
 function showMainTab(tabId, btn) {
   window.scrollTo(0, 0);
-  var ids = ['fashion-section','shop-seal','shop-kids','shop-kaden'];
+  var ids = ['shop-pierrot','shop-petitjo','shop-seal','shop-kids','shop-kaden'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
     if (el) el.style.display = 'none';
@@ -80,28 +77,6 @@ function showMainTab(tabId, btn) {
   var t = document.getElementById(tabId);
   if (t) t.style.display = 'block';
   var btns = document.querySelectorAll('.shop-btn');
-  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
-  if (btn) btn.classList.add('active');
-  if (tabId === 'fashion-section') {
-    var pierrot = document.getElementById('shop-pierrot');
-    var petitjo = document.getElementById('shop-petitjo');
-    if (pierrot) pierrot.style.display = 'block';
-    if (petitjo) petitjo.style.display = 'none';
-    var fbtns = document.querySelectorAll('.fashion-shop-btn');
-    for (var k = 0; k < fbtns.length; k++) fbtns[k].classList.remove('active');
-    if (fbtns[0]) fbtns[0].classList.add('active');
-  }
-}
-function showFashionShop(shopId, btn) {
-  window.scrollTo(0, 0);
-  var ids = ['shop-pierrot','shop-petitjo'];
-  for (var i = 0; i < ids.length; i++) {
-    var el = document.getElementById(ids[i]);
-    if (el) el.style.display = 'none';
-  }
-  var t = document.getElementById(shopId);
-  if (t) t.style.display = 'block';
-  var btns = document.querySelectorAll('.fashion-shop-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
 }
@@ -116,16 +91,12 @@ function showFashionShop(shopId, btn) {
 </div>
 <h1>🍎 楽天ROOM 投稿文まとめ</h1>
 <div class="shop-nav">
-<a class="shop-btn active" href="javascript:void(0)" onclick="showMainTab('fashion-section',this)">👗 ファッション</a>
+<a class="shop-btn active" href="javascript:void(0)" onclick="showMainTab('shop-pierrot',this)">🏪 Pierrot</a>
+<a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-petitjo',this)">👗 Petitjo</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-seal',this)">🏷️ シール</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-kids',this)">👶 キッズ・ベビー</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-kaden',this)">🏠 家電</a>
 <a class="shop-btn" href="analytics.html" style="background:#fff3e0;border-color:#ff9800;color:#e65100;">📊 分析</a>
-</div>
-<div id="fashion-section">
-<div class="fashion-shop-nav">
-<a class="fashion-shop-btn active" href="javascript:void(0)" onclick="showFashionShop('shop-pierrot',this)">🏪 Pierrot</a>
-<a class="fashion-shop-btn" href="javascript:void(0)" onclick="showFashionShop('shop-petitjo',this)">👗 Petitjo</a>
 </div>
 <div id="shop-pierrot">
 <div class="shop-header">🏪 Pierrot</div>
@@ -1966,7 +1937,6 @@ P58〜P67の4丈展開でジャストな丈感が手に入る✨
 </div>
 </div>
 
-</div>
 <div id="shop-seal" style="display:none">
 <div class="shop-header">🏷️ シール</div>
 <div class="nav"><a class="nav-btn" href="#seal-alljapan">🏪<br>販売一丁目</a><a class="nav-btn" href="#seal-tcrown">🏪<br>T-CROWN</a></div>
