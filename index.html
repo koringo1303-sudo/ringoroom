@@ -81,8 +81,10 @@ function showMainTab(tabId, btn) {
   var btns = document.querySelectorAll('.shop-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
+  var pierrotEl = document.getElementById('shop-pierrot');
+  var kadenEl = document.getElementById('shop-kaden');
   var dbg = document.getElementById('_dbg');
-  if (dbg) dbg.textContent = 'v8 | 表示中: ' + tabId;
+  if (dbg) dbg.textContent = 'v8 | tab:' + tabId + ' | pierrot:' + (pierrotEl ? pierrotEl.style.display||'(none set)' : 'NULL') + ' | kaden:' + (kadenEl ? kadenEl.style.display||'(none set)' : 'NULL');
 }
 </script>
 <div id="copy-modal">
