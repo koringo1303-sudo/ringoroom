@@ -68,14 +68,12 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 <body>
 <script>
 function showMainTab(tabId, btn) {
-  window.scrollTo(0, 0);
-  var ids = ['shop-pierrot','shop-petitjo','shop-seal','shop-kids','shop-kaden'];
-  for (var i = 0; i < ids.length; i++) {
-    var el = document.getElementById(ids[i]);
-    if (el) el.style.display = 'none';
-  }
-  var t = document.getElementById(tabId);
-  if (t) t.style.display = 'block';
+  var d = 'none';
+  document.getElementById('shop-pierrot').style.display = (tabId==='shop-pierrot') ? 'block' : d;
+  document.getElementById('shop-petitjo').style.display = (tabId==='shop-petitjo') ? 'block' : d;
+  document.getElementById('shop-seal').style.display    = (tabId==='shop-seal')    ? 'block' : d;
+  document.getElementById('shop-kids').style.display    = (tabId==='shop-kids')    ? 'block' : d;
+  document.getElementById('shop-kaden').style.display   = (tabId==='shop-kaden')   ? 'block' : d;
   var btns = document.querySelectorAll('.shop-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
