@@ -71,22 +71,19 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 </head>
 <body>
 <script>
-(function(){var V='v7';if(localStorage.getItem('appV')!==V){localStorage.setItem('appV',V);location.reload(true);}})();
 function showMainTab(tabId, btn) {
-  var tabs = ['shop-pierrot','shop-petitjo','shop-seal','shop-kids','shop-kaden'];
-  for (var i = 0; i < tabs.length; i++) {
-    var el = document.getElementById(tabs[i]);
+  var ids = ['shop-pierrot','shop-petitjo','shop-seal','shop-kids','shop-kaden'];
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
     if (el) {
-      if (tabs[i] === tabId) {
-        el.classList.remove('tab-hidden');
-      } else {
-        el.classList.add('tab-hidden');
-      }
+      el.setAttribute('style', ids[i]===tabId ? 'display:block' : 'display:none');
     }
   }
   var btns = document.querySelectorAll('.shop-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
+  var dbg = document.getElementById('_dbg');
+  if (dbg) dbg.textContent = 'v8 | 表示中: ' + tabId;
 }
 </script>
 <div id="copy-modal">
@@ -98,6 +95,7 @@ function showMainTab(tabId, btn) {
   </div>
 </div>
 <h1>🍎 楽天ROOM 投稿文まとめ</h1>
+<div id="_dbg" style="background:#e53935;color:#fff;text-align:center;font-size:11px;padding:2px 0">v8 | 表示中: shop-pierrot</div>
 <div class="shop-nav">
 <a class="shop-btn active" href="javascript:void(0)" onclick="showMainTab('shop-pierrot',this)">🏪 Pierrot</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-petitjo',this)">👗 Petitjo</a>
