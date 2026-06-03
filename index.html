@@ -75,7 +75,13 @@ function showMainTab(tabId, btn) {
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
     if (el) {
-      el.setAttribute('style', ids[i]===tabId ? 'display:block' : 'display:none');
+      if (ids[i] === tabId) {
+        el.style.removeProperty('display');
+        el.style.setProperty('display', 'block', 'important');
+      } else {
+        el.style.removeProperty('display');
+        el.style.setProperty('display', 'none', 'important');
+      }
     }
   }
   var btns = document.querySelectorAll('.shop-btn');
