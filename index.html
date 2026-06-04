@@ -66,13 +66,28 @@ h1 { color: #c0436b; font-size: 17px; text-align: center; padding: 14px; backgro
 .an-shop-Pierrot { background:#fce4ec; color:#c0436b; }
 .an-shop-シール { background:#e8f5e9; color:#388e3c; }
 
+
+.fashion-sub-nav { display: flex; gap: 8px; padding: 8px 14px; background: #fdf6f8; border-bottom: 1px solid #e8b4c8; position: sticky; top: 47px; z-index: 9; }
+.fashion-btn { min-width: 70px; text-align: center; background: #fff; border: 2px solid #c0436b; border-radius: 16px; padding: 5px 14px; font-size: 12px; color: #c0436b; cursor: pointer; font-weight: bold; white-space: nowrap; }
+.fashion-btn.active { background: #e8b4c8; }
 </style>
 </head>
 <body>
 <script>
+
+function showFashionTab(tabId, btn) {
+  var ids = ['shop-pierrot','shop-petitjo'];
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
+    if (el) el.setAttribute('style', ids[i] === tabId ? 'display:block' : 'display:none');
+  }
+  var btns = document.querySelectorAll('.fashion-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+  if (btn) btn.classList.add('active');
+}
 function showMainTab(tabId, btn) {
   try { if (history.replaceState) history.replaceState(null, '', location.pathname); } catch(e) {}
-  var ids = ['shop-pierrot','shop-petitjo','shop-seal','shop-kids','shop-kaden'];
+  var ids = ['shop-fashion','shop-seal','shop-kids','shop-kaden'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
     if (el) {
@@ -95,12 +110,16 @@ function showMainTab(tabId, btn) {
 <h1>🍎 楽天ROOM 投稿文まとめ</h1>
 
 <div class="shop-nav">
-<a class="shop-btn active" href="javascript:void(0)" onclick="showMainTab('shop-pierrot',this)">🏪 Pierrot</a>
-<a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-petitjo',this)">👗 Petitjo</a>
+<a class="shop-btn active" href="javascript:void(0)" onclick="showMainTab('shop-fashion',this)">👗 ファッション</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-seal',this)">🏷️ シール</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-kids',this)">👶 キッズ・ベビー</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-kaden',this)">🏠 家電</a>
 <a class="shop-btn" href="analytics.html" style="background:#fff3e0;border-color:#ff9800;color:#e65100;">📊 分析</a>
+</div>
+<div id="shop-fashion">
+<div class="fashion-sub-nav">
+<button class="fashion-btn active" onclick="showFashionTab('shop-pierrot',this)">🏪 Pierrot</button>
+<button class="fashion-btn" onclick="showFashionTab('shop-petitjo',this)">👗 Petitjo</button>
 </div>
 <div id="shop-pierrot">
 <div class="shop-header">🏪 Pierrot</div>
@@ -1937,6 +1956,7 @@ P58〜P67の4丈展開でジャストな丈感が手に入る✨
 #低身長コーデ #低身長ママ #テーパードデニム
 #小柄さんコーデ #デニムパンツ #楽ちんファッション</textarea>
 <button class="copy-btn" onclick="copyText(this)">📋 コピーする</button>
+</div>
 </div>
 </div>
 </div>
