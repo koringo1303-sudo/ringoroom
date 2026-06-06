@@ -111,7 +111,8 @@ function showNichiyohinTab(tabId, btn) {
 
 function showMainTab(tabId, btn) {
   try { if (history.replaceState) history.replaceState(null, '', location.pathname); } catch(e) {}
-  var ids = ['shop-fashion','shop-seal','shop-kids','shop-kaden','shop-nichiyohin'];
+  var ids = ['shop-fashion','shop-seal','shop-kids','shop-kaden','shop-nichiyohin','shop-original'];
+  if (tabId === 'shop-original') { setTimeout(buildOriginalTab, 0); }
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
     if (el) {
@@ -139,6 +140,7 @@ function showMainTab(tabId, btn) {
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-kids',this)">👶 キッズ・ベビー</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-nichiyohin',this)">🧴 日用品</a>
 <a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-kaden',this)">🏠 家電</a>
+<a class="shop-btn" href="javascript:void(0)" onclick="showMainTab('shop-original',this)">📷 オリジナル写真</a>
 <a class="shop-btn" href="analytics.html" style="background:#fff3e0;border-color:#ff9800;color:#e65100;">📊 分析</a>
 </div>
 <div id="shop-fashion">
@@ -4061,5 +4063,33 @@ UV対策機能付きで日焼け防止しながらおしゃれに◎
 
 
 
+<div id="shop-original" style="display:none">
+<div class="shop-header">📷 オリジナル写真</div>
+<div id="original-cards" class="cat-section"></div>
+</div>
+<script>
+function buildOriginalTab() {
+  var container = document.getElementById('original-cards');
+  container.innerHTML = '';
+  var allCards = document.querySelectorAll('#shop-fashion .card, #shop-seal .card, #shop-kids .card, #shop-kaden .card, #shop-nichiyohin .card');
+  var count = 0;
+  for (var i = 0; i < allCards.length; i++) {
+    var ta = allCards[i].querySelector('textarea');
+    if (ta && ta.value.indexOf('#オリジナル写真') !== -1) {
+      var clone = allCards[i].cloneNode(true);
+      clone.removeAttribute('id');
+      var cloneBtn = clone.querySelector('.copy-btn');
+      if (cloneBtn) {
+        cloneBtn.setAttribute('onclick', 'copyText(this)');
+      }
+      container.appendChild(clone);
+      count++;
+    }
+  }
+  if (count === 0) {
+    container.innerHTML = '<div class="empty">📷 #オリジナル写真 タグの商品が見つかりません</div>';
+  }
+}
+</script>
 </body>
 </html>
